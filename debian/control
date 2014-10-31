@@ -1,0 +1,33 @@
+Source: glb
+Section: database
+Priority: extra
+Maintainer: Troex Nevelin <troex@fury.scancode.ru>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: https://github.com/codership/glb
+Vcs-Git: git://git@github.com:codership/glb.git
+Vcs-Browser: https://github.com/codership/glb
+
+Package: glb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Galera Load Balancer - a simple TCP connection proxy and load-balancing library
+ glbd is a simple TCP connection balancer made with scalability and performance
+ in mind. It was inspired by pen, but unlike pen its functionality is limited
+ only to balancing generic TCP connections.
+ Features:
+  * list of backend servers is configurable in runtime
+  * supports server "draining", i.e. does not allocate new connections to
+    server, but does not kill existing ones, waiting for them to end gracefully
+  * can use epoll API provided by Linux version 2.6 and higher for ultimate
+    routing performance
+  * glbd is multithreaded, so it can utilize multiple CPU cores. Also, if your
+    OS does not support epoll API, consider using several threads even on a
+    single core machine as it will lessen poll() overhead proportionally and can
+    improve overall performance by a factor of 2 or more
+  * optional watchdog module can monitor destinations and adjust routing table
+    automatically
+  * libglb is a shared library that provides 0-effort connection balancing to
+    any Linux application that uses standard libc connect() call by overloading
+    that function in runtime. No other program functionality is affected and no
+    program modification or recompilation is needed
