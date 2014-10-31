@@ -1,0 +1,13 @@
+diff --git a/src/glb_wdog_exec.c.orig b/src/glb_wdog_exec.c
+index 0bd30b1..1df35c0 100644
+--- a/src/glb_wdog_exec.c.orig
++++ b/src/glb_wdog_exec.c
+@@ -296,7 +296,7 @@ init_error:
+ 
+ //cleanup:
+ 
+-    if (pid > 0 && !glb_terminate) {
++    if (pid > 0) {
+         assert(std_in);
+         assert(std_out);
+ 
