@@ -1,2 +1,4 @@
 0001-ensure-wdog-termination.patch
 0002-watchdog-credentials.patch
+0003-fix-realloc-crash.patch
+0004-properly-zero-out-structs.patch
