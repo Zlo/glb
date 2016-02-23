@@ -1,0 +1,42 @@
+# This is a configuration file for glbd service script
+#
+# All settings besides LISTEN_ADDR are optional.
+#
+
+# Should glb run automatically on startup? Default: no
+START="no"
+
+# Address to listen for client connections at. Mandatory parameter.
+# To bind to all interfaces only port should be specified.
+LISTEN_ADDR="4040"
+
+# Address for controlling connection. Mandatory part is port.
+# If not specified control socket will not be opened
+CONTROL_ADDR="127.0.0.1:4041"
+
+# Control FIFO name. It is opened always. glbd will refuse to start if
+# this file already exists.
+CONTROL_FIFO="/var/run/glbd.fifo"
+
+# Number of threads (connection pools) to use. It is always a good idea
+# to have a few per CPU core. Default: 4
+#THREADS=`expr $(grep ^processor /proc/cpuinfo | wc -l) \* 2`
+
+# Maximum connections. System open files limit will be modified to accommodate
+# at least that many client connections provided sufficient privileges.
+# Normally you should set it if you plan to go above 500.
+#MAX_CONN=
+
+# Target servers for client connections, space separated.
+# Target specification: IP[:PORT[:WEIGHT]] (WEIGHT and PORT optional)
+# WEIGHT defaults to 1, PORT defaults to LISTEN_ADDR port.
+#DEFAULT_TARGETS="127.0.0.1:3306 10.0.0.1:3306 10.0.0.2:3306:2"
+
+# Other glbd options if any as they would appear on the command line.
+#OTHER_OPTIONS="--round --watchdog exec:'/usr/share/glb/wsrep-watchdog.sh -d 2'"
+
+# Watchdog backend credentials. These parameters are passed directly to mysql
+# command used to query targets. It's recommended to set 'chmod 600
+# /etc/default/glb' if you supply password here.
+#WATCHDOG_CRED="-uwatchdog -pchangeme"
+

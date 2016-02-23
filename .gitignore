@@ -19,6 +19,8 @@
 *.app
 .svn
 
+debian/*.ex
+
 # Temporaries
 INSTALL
 Makefile

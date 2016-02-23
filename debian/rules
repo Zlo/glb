@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PACKAGE = $(shell dh_listpackages)
+TMP     = $(CURDIR)/debian/$(PACKAGE)
+
+%:
+	dh $@ 
+
+override_dh_auto_configure:
+	./bootstrap.sh
+	dh_auto_configure
+
+override_dh_auto_install:
+	dh_auto_install
+	install -d -m 755 $(TMP)/usr/share/glb
+	install -m 755 files/mysql.sh $(TMP)/usr/share/glb/wsrep-watchdog.sh
+
+override_dh_clean:
+	dh_clean
+	[ ! -f Makefile ] || $(MAKE) clean
+	rm -f INSTALL \
+		Makefile \
+		Makefile.in \
+		aclocal.m4 \
+		compile \
+		configure \
+		config.* \
+		depcomp \
+		doc/Makefile \
+		doc/Makefile.in \
+		doc/html/* \
+		install-sh \
+		libtool \
+		ltmain.sh \
+		missing \
+		src/Makefile \
+		src/Makefile.in \
+		stamp-h1
